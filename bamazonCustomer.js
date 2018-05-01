@@ -6,7 +6,7 @@ let connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root', 
-    password: 'W1ldcat3.',
+    password: '',
     database: 'bamazon'
 });
 
@@ -17,8 +17,6 @@ connection.connect(function(err){
         displayProducts();
     }
 });
-
-
 
 function promptCustomer(){
     inquirer.prompt([
@@ -35,6 +33,7 @@ function promptCustomer(){
     ]).then(function(answer){
 
         // TODO: Check if the product ID actually exists
+        
         connection.query("SELECT * FROM products WHERE ?", {item_id: answer.id}, function(err, res){
             console.log(`You plan to buy ${answer.quantity} ${res[0].product_name}(s)`);
 
@@ -100,7 +99,7 @@ function completeTransaction(id, quantity){
 }
 function displayProducts(){
     console.log("===== Current Inventory ====");
-    var query = "SELECT item_id, product_name, price FROM products";
+    var query = "SELECT item_id as ID, product_name as NAME, price as PRICE FROM products";
     connection.query(query, function(err, res){
         console.table(res);
         promptCustomer();
