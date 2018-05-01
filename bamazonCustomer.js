@@ -6,7 +6,7 @@ let connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root', 
-    password: '',
+    password: 'W1ldcat3.',
     database: 'bamazon'
 });
 
@@ -62,11 +62,28 @@ function promptCustomer(){
                 completeTransaction(answer.id, updatedQuantity);
                 //console.log(updatedQuantity);
                 showTotalPrice(res[0].price, answer.quantity);
+                updateRevenue(res[0].price, answer.quantity, res[0].item_id, res[0].product_sales);
             }
         });
     });
 }
 
+function updateRevenue(price, quantity, id, currentSale){
+    let newSale = parseFloat(price) * parseInt(quantity);
+    newSale += currentSale;
+    let query = "UPDATE products SET ? WHERE ?";
+    let updates = [
+        {
+            product_sales: newSale
+        },
+        {
+            item_id: id
+        }
+    ];
+    connection.query(query, updates, function(err, res){
+        if(err) throw err;
+    });
+}
 
 function buyMore(){
     inquirer.prompt({

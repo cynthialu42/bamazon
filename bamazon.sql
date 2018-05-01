@@ -10,9 +10,15 @@ CREATE TABLE products (
     department_name VARCHAR(50),
     price DECIMAL(10, 2),
     stock_quantity INT,
+    product_sales DECIMAL(10,2) DEFAULT 0,
     PRIMARY KEY(item_id)
 );
 
+CREATE TABLE departments (
+	department_id INT NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(50),
+    over_head_costs INT DEFAULT 100
+);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES 	("Teddy Bear", "Toys", 15.50, 100), 
