@@ -41,4 +41,4 @@ VALUES	("Toys", 100),
         ("Food", 100);
         
         
-SELECT * FROM departments
+SELECT * FROM products

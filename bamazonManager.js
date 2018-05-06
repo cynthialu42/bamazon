@@ -13,7 +13,7 @@ let connection = mysql.createConnection({
 connection.connect(function(err){
     if(err) throw err;
     else{
-        console.log(connection.threadId);
+        //console.log(connection.threadId);
         promptManager();
     }
 });

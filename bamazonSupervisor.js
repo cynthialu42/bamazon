@@ -69,7 +69,7 @@ function createDepartment(){
     ]).then(function(answer){
         let name = answer.name;
         let overhead = parseInt(answer.overhead);
-        console.log(name + overhead)
+        //console.log(name + overhead)
         let query = "INSERT INTO departments SET ?";
         let newDep = 
             {
