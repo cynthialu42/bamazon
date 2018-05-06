@@ -17,7 +17,8 @@ CREATE TABLE products (
 CREATE TABLE departments (
 	department_id INT NOT NULL AUTO_INCREMENT,
     department_name VARCHAR(50),
-    over_head_costs INT DEFAULT 100
+    over_head_costs INT DEFAULT 100,
+    PRIMARY KEY(department_id)
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
@@ -31,5 +32,13 @@ VALUES 	("Teddy Bear", "Toys", 15.50, 100),
         ("Lipstick", "Beauty", 36.00, 30),
         ("Blush", "Beauty", 15.00, 100),
         ("Puzzle", "Toys", 10.00, 100);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES	("Toys", 100), 
+		("Sports", 150), 
+		("Beauty", 500), 
+        ("Clothes", 300),
+        ("Food", 100);
         
-SELECT * FROM products
+        
+SELECT * FROM departments

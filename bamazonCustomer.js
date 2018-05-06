@@ -6,14 +6,14 @@ let connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root', 
-    password: 'W1ldcat3.',
+    password: '',
     database: 'bamazon'
 });
 
 connection.connect(function(err){
     if(err) throw err;
     else{
-        console.log(connection.threadId);
+        //console.log(connection.threadId);
         displayProducts();
     }
 });
@@ -48,11 +48,11 @@ function promptCustomer(){
                         promptCustomer();
                     }
                     else if(answer.choice.toUpperCase() === 'N' || answer.choice.toUpperCase() === 'NO'){
-                        console.log("Ok come back again soone!");
+                        console.log("Ok come back again soon!");
                         connection.end();
                     }
                     else{
-                        console.log("Not a valid selection. Loggin out");
+                        console.log("Not a valid selection. Logging out");
                         connection.end();
                     }
                 });
@@ -70,7 +70,7 @@ function promptCustomer(){
 
 function updateRevenue(price, quantity, id, currentSale){
     let newSale = parseFloat(price) * parseInt(quantity);
-    newSale += currentSale;
+    newSale += parseFloat(currentSale);
     let query = "UPDATE products SET ? WHERE ?";
     let updates = [
         {
@@ -95,11 +95,11 @@ function buyMore(){
             displayProducts();
         }
         else if(answer.choice.toUpperCase() === 'N' || answer.choice.toUpperCase() === 'NO'){
-            console.log("Ok come back again soone!");
+            console.log("Ok come back again soon!");
             connection.end();
         }
         else{
-            console.log("Not a valid selection. Loggin out");
+            console.log("Not a valid selection. Logging out");
             connection.end();
         }
     });
